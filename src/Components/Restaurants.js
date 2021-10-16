@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from "query-string";
-import { Card, Table, Pagination } from "react-bootstrap";
+import { Card, Table, Pagination, Spinner } from "react-bootstrap";
 
 function Restaurants() {
-  const [restaurants, setRestaurants] = useState([]);
+  const [restaurants, setRestaurants] = useState(null);
   const [page, setPage] = useState(1);
   const perPage = 10;
   let history = useHistory();
@@ -34,7 +34,18 @@ function Restaurants() {
     setPage(page + 1);
   };
 
-  if (restaurants.length > 0 && restaurants !== null) {
+  if (!restaurants) {
+    return (
+      <Card>
+        <Card.Header>Restaurant List</Card.Header>
+        <Card.Body>Loading Restaurants...</Card.Body>
+        <Spinner animation="border" role="status" />
+        {/*spinner that shows a loading circle. It first shows it, then when the data is rendered successfully, and loading is set to false, then it will be disappeared.  */}
+      </Card>
+    );
+  }
+
+  if (restaurants.length > 0) {
     return (
       <>
         <Card style={{ backgroundColor: "#E8EEF2" }}>
@@ -79,13 +90,6 @@ function Restaurants() {
           <Pagination.Next onClick={nextPage}></Pagination.Next>
         </Pagination>
       </>
-    );
-  } else if (restaurants === null) {
-    return (
-      <Card>
-        <Card.Header>Restaurant List</Card.Header>
-        <Card.Body>Loading Restaurants...</Card.Body>
-      </Card>
     );
   } else {
     return (
