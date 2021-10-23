@@ -26,6 +26,9 @@ function Restaurant() {
         } else {
           setRestaurant(null);
         }
+      })
+      .catch((err) => {
+        console.log("Cannot fetch the data from api with error: ", err);
       });
   }, [id]);
 

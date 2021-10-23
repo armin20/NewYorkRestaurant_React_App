@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { Card, Table, Pagination, Spinner } from "react-bootstrap";
-
+import "./style.css";
 function Restaurants() {
   const [restaurants, setRestaurants] = useState(null);
   const [page, setPage] = useState(1);
@@ -22,6 +22,9 @@ function Restaurants() {
       .then((res) => res.json())
       .then((restaurants) => {
         setRestaurants(restaurants);
+      })
+      .catch((err) => {
+        console.log("Cannot fetch the data from api with error: ", err);
       });
   }, [page, location]);
 
@@ -39,8 +42,10 @@ function Restaurants() {
       <Card>
         <Card.Header>Restaurant List</Card.Header>
         <Card.Body>Loading Restaurants...</Card.Body>
-        <Spinner animation="border" role="status" />
-        {/*spinner that shows a loading circle. It first shows it, then when the data is rendered successfully, and loading is set to false, then it will be disappeared.  */}
+        <div id="spinner">
+          <Spinner animation="border" role="status" />
+          {/*spinner that shows a loading circle. It first shows it, then when the data is rendered successfully, and loading is set to false, then it will be disappeared.  */}
+        </div>
       </Card>
     );
   }
