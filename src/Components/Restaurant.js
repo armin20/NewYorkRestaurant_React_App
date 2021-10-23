@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { useState, useEffect } from "react";
 import { Card, CardDeck, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-
+import "./style.css";
 function Restaurant() {
   let { id } = useParams();
   const [restaurant, setRestaurant] = useState(null);
@@ -37,8 +37,10 @@ function Restaurant() {
       <Card>
         <Card.Header>Restaurant List</Card.Header>
         <Card.Body>Loading Restaurants...</Card.Body>
-        <Spinner animation="border" role="status" />{" "}
-        {/*spinner that shows a loading circle. It first shows it, then when the data is rendered successfully, and loading is set to false, then it will be disappeared.  */}
+        <div id="spinner">
+          <Spinner animation="border" role="status" />{" "}
+          {/*spinner that shows a loading circle. It first shows it, then when the data is rendered successfully, and loading is set to false, then it will be disappeared.  */}
+        </div>
       </Card>
     );
   } else {
