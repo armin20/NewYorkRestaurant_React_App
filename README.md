@@ -1,4 +1,5 @@
-# Link to website: https://new-york-restaurant-react-app.vercel.app/
+# Link to website:
+https://new-york-restaurant-react-app.vercel.app/
 
 # Getting Started with Create React App
 
